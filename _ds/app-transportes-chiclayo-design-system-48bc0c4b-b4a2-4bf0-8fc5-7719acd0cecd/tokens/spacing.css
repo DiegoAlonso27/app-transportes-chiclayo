@@ -1,0 +1,48 @@
+:root {
+/* Spacing Scale */
+--space-0: 0px;
+--space-xs: 4px;
+--space-sm: 8px;
+--space-md: 12px;
+--space-lg: 16px;
+--space-xl: 24px;
+--space-2xl: 32px;
+--space-3xl: 40px;
+--space-4xl: 48px;
+--space-5xl: 56px;
+
+/* Gaps */
+--gap-xs: 4px;
+--gap-sm: 8px;
+--gap-md: 12px;
+--gap-lg: 16px;
+--gap-xl: 24px;
+--gap-2xl: 32px;
+
+/* Padding Presets */
+--padding-xs: 4px;
+--padding-sm: 8px;
+--padding-md: 12px;
+--padding-lg: 16px;
+--padding-xl: 24px;
+--padding-2xl: 32px;
+
+/* Margin Presets */
+--margin-xs: 4px;
+--margin-sm: 8px;
+--margin-md: 12px;
+--margin-lg: 16px;
+--margin-xl: 24px;
+--margin-2xl: 32px;
+
+/* Touch Target (Material Design 3) */
+--touch-target: 48px;
+--touch-target-sm: 40px;
+
+/* Inset */
+--inset-xs: 4px;
+--inset-sm: 8px;
+--inset-md: 12px;
+--inset-lg: 16px;
+--inset-xl: 24px;
+}

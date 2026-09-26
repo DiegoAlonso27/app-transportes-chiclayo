@@ -1,0 +1,86 @@
+/* Flujo de autenticación. Estilos propios del flujo; el resto viene de tc-auth-base.css
+   (mismo lenguaje que Mi cuenta) y de los tokens del Design System. */
+.scr-aut{height:100%}
+.scr-aut *{margin:0;padding:0;box-sizing:border-box}
+.scr-aut button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+.scr-aut a{color:var(--color-primary);text-decoration:none}
+.scr-aut a:hover{color:var(--cinnabar-700)}
+/* App bar simple: solo ← cuando existe pantalla anterior */
+.scr-aut .au-bar{flex-shrink:0;display:flex;align-items:center;gap:4px;padding:44px 8px 4px;background:var(--color-background)}
+.scr-aut .au-bar-t{font-size:var(--title-medium-size);font-weight:500;color:var(--text-primary)}
+.scr-aut .au-body{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:12px 20px 28px;display:flex;flex-direction:column;gap:20px;scrollbar-width:none}
+.scr-aut .au-body::-webkit-scrollbar{width:0}
+.scr-aut .au-body.with-cta{padding-bottom:120px}
+.scr-aut .au-head{display:flex;flex-direction:column;gap:6px}
+.scr-aut .au-t{font-size:var(--headline-small-size,24px);font-weight:700;letter-spacing:-.4px;line-height:1.25}
+.scr-aut .au-d{font-size:var(--body-medium-size);color:var(--text-secondary);line-height:1.5;text-wrap:pretty}
+.scr-aut .au-d b{font-weight:500;color:var(--text-primary);font-variant-numeric:tabular-nums}
+.scr-aut .au-paso{font-size:var(--label-small-size);font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--color-primary)}
+.scr-aut .au-form{display:flex;flex-direction:column;gap:16px}
+.scr-aut .au-cta{flex-shrink:0;position:absolute;left:0;right:0;bottom:0;z-index:3;background:var(--color-background);border-top:1px solid var(--border-light);padding:12px 20px 20px;display:flex;flex-direction:column;gap:6px}
+.scr-aut .au-foot{text-align:center;font-size:var(--label-large-size);color:var(--text-secondary)}
+.scr-aut .au-foot button{font-weight:700;color:var(--color-primary);min-height:44px;padding:0 6px}
+.scr-aut .au-lnk{align-self:flex-start;font-size:var(--label-large-size);font-weight:700;color:var(--color-primary);min-height:44px;display:inline-flex;align-items:center}
+.scr-aut .au-lnk.centro{align-self:center}
+.scr-aut .au-ic{width:56px;height:56px;border-radius:var(--radius-full);background:var(--color-primary-light);display:flex;align-items:center;justify-content:center}
+/* Bienvenida */
+.scr-aut .au-welcome{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:40px 24px 32px}
+.scr-aut .au-welcome img{height:56px;align-self:center}
+.scr-aut .au-acciones{display:flex;flex-direction:column;gap:10px}
+/* OTP: se ve segmentado, pero es un solo campo (pegar, borrar y lectores de pantalla) */
+.scr-aut .otp{position:relative;display:flex;gap:8px}
+.scr-aut .otp-in{position:absolute;inset:0;width:100%;height:100%;z-index:2;opacity:0;font-size:16px;border:none;background:transparent;letter-spacing:2em}
+.scr-aut .otp-in:disabled{cursor:not-allowed}
+.scr-aut .otp-box{flex:1;height:56px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--surface-2);font-size:var(--headline-small-size,24px);font-weight:700;color:var(--text-primary);font-variant-numeric:tabular-nums;transition:border-color 150ms cubic-bezier(0.4,0,0.2,1),box-shadow 150ms cubic-bezier(0.4,0,0.2,1)}
+.scr-aut .otp-box.full{border-color:var(--gray-500)}
+.scr-aut .otp-box.on{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary)}
+.scr-aut .otp.err .otp-box{border-color:var(--color-error)}
+.scr-aut .otp.err .otp-box.on{box-shadow:0 0 0 1px var(--color-error)}
+.scr-aut .otp.dis .otp-box{background:var(--gray-100);border-color:var(--border);color:var(--text-secondary)}
+.scr-aut .otp.ok .otp-box{border-color:var(--color-success);color:var(--color-success)}
+.scr-aut .otp-msg{display:flex;align-items:flex-start;gap:6px;font-size:var(--label-small-size);line-height:1.45;color:var(--text-tertiary)}
+.scr-aut .otp-msg.err{color:var(--color-error)}
+.scr-aut .otp-msg.ok{color:var(--color-success)}
+/* Reenvío */
+.scr-aut .au-reenvio{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;font-size:var(--label-small-size);color:var(--text-tertiary)}
+.scr-aut .au-reenvio button{font-size:var(--label-large-size);font-weight:700;color:var(--color-primary);min-height:44px;padding:0 8px}
+.scr-aut .au-reenvio .espera{font-size:var(--label-large-size);font-weight:500;color:var(--text-muted);min-height:44px;display:flex;align-items:center;font-variant-numeric:tabular-nums}
+/* Métodos de verificación */
+.scr-aut .met{display:flex;flex-direction:column}
+.scr-aut .met-row{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 14px;text-align:left}
+.scr-aut .met-row+.met-row{border-top:1px solid var(--border-light)}
+.scr-aut .met-row:active{background:var(--gray-50)}
+.scr-aut .met-tx{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.scr-aut .met-tx b{font-size:var(--label-large-size);font-weight:500}
+.scr-aut .met-tx span{font-size:var(--label-small-size);color:var(--text-tertiary);font-variant-numeric:tabular-nums}
+.scr-aut .radio{width:22px;height:22px;flex-shrink:0;border-radius:var(--radius-full);border:2px solid var(--border-strong);display:flex;align-items:center;justify-content:center}
+.scr-aut .radio.on{border-color:var(--color-primary)}
+.scr-aut .radio.on::after{content:'';width:11px;height:11px;border-radius:var(--radius-full);background:var(--color-primary)}
+/* Checkbox de términos: mismo patrón del checkout */
+.scr-aut .chk-row{display:flex;align-items:flex-start;gap:12px;padding:12px 2px}
+.scr-aut .chk{width:24px;height:24px;flex-shrink:0;margin-top:1px;border-radius:var(--radius-xs);border:2px solid var(--border-strong);display:flex;align-items:center;justify-content:center;background:var(--surface-2)}
+.scr-aut .chk.on{background:var(--color-primary);border-color:var(--color-primary)}
+.scr-aut .chk.err{border-color:var(--color-error)}
+.scr-aut .chk-tx{font-size:var(--label-large-size);line-height:1.5;color:var(--text-secondary)}
+.scr-aut .chk-tx button{font-weight:700;color:var(--color-primary);text-decoration:underline;text-underline-offset:2px}
+/* Éxito breve */
+.scr-aut .au-ok{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:32px 28px}
+.scr-aut .au-ok-ic{width:72px;height:72px;border-radius:var(--radius-full);background:var(--color-success);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-2)}
+.scr-aut .au-ok h1{font-size:var(--headline-small-size,24px);font-weight:700;letter-spacing:-.4px}
+.scr-aut .au-ok p{font-size:var(--body-medium-size);color:var(--text-secondary);line-height:1.5;max-width:270px;text-wrap:pretty}
+/* Estado de la cuenta en ajustes */
+.scr-aut .estado-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-full);font-size:var(--label-small-size);font-weight:500}
+.scr-aut .estado-pill.off{background:var(--gray-100);color:var(--text-secondary)}
+.scr-aut .estado-pill.on{background:var(--color-success-container,#e8f5e0);color:var(--color-success)}
+.scr-aut .spin{animation:tcspin 900ms linear infinite}
+/* Hoja inferior reutilizada para "usar otro método" */
+.scr-aut .sheet-wrap{position:absolute;inset:0;z-index:40;display:flex;align-items:flex-end}
+.scr-aut .sheet-bg{position:absolute;inset:0;background:rgba(10,11,11,.45)}
+.scr-aut .sheet{position:relative;width:100%;background:var(--surface-2);border-radius:var(--radius-lg) var(--radius-lg) 0 0;box-shadow:var(--shadow-4);padding:8px 16px 0;animation:sheetin 300ms cubic-bezier(0.4,0,0.2,1)}
+.scr-aut .sheet-grab{width:36px;height:4px;border-radius:var(--radius-full);background:var(--gray-300);margin:4px auto 8px}
+.scr-aut .sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 0 6px}
+.scr-aut .sheet-h h3{font-size:var(--title-medium-size);font-weight:700}
+.scr-aut .tc-safe{display:block;height:16px}
+@keyframes sheetin{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes tcspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.scr-aut *{animation:none!important;transition:none!important}}

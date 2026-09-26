@@ -1,0 +1,17 @@
+:root {
+/* Border Radius (Material Design 3) */
+--radius-none: 0px;
+--radius-xs: 4px;
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-full: 999px;
+
+/* Component-specific */
+--radius-button: var(--radius-xs);
+--radius-input: var(--radius-sm);
+--radius-card: var(--radius-md);
+--radius-dialog: var(--radius-md);
+--radius-chip: var(--radius-full);
+--radius-avatar: var(--radius-full);
+}

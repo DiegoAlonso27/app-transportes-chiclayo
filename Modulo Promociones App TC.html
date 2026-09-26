@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo Promociones · App Transportes Chiclayo</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/animation.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:28px;padding:32px 24px 40px}
+button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+#app{display:flex;flex-direction:column;align-items:center;gap:20px}
+.device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background)}
+.phone{height:100%;position:relative}
+.tc-screen{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background)}
+.tc-icon-btn{width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full)}
+.tc-icon-btn.light:active{background:rgba(255,255,255,.16)}
+/* App bars: raíz sin atrás; secundarias con ← */
+.ct-appbar{flex-shrink:0;background:var(--color-primary);padding:52px 20px 26px;display:flex;align-items:center;justify-content:space-between}
+.ct-appbar-t{font-size:var(--headline-small-size,24px);font-weight:700;color:#fff;letter-spacing:-.3px}
+.mb-bar{flex-shrink:0;background:var(--color-primary);padding:46px 8px 26px;display:flex;align-items:center;gap:4px}
+.mb-t{flex:1;font-size:var(--title-large-size);font-weight:700;color:#fff;letter-spacing:-.2px}
+.pm-content,.mb-content{flex:1;overflow-y:auto;overscroll-behavior:contain;background:var(--gray-50);border-radius:var(--radius-lg) var(--radius-lg) 0 0;margin-top:-16px;position:relative;z-index:1}
+.pm-content{padding:18px 16px 26px}
+.mb-content{padding:20px 16px 28px}
+.mb-content.with-cta{padding-bottom:132px}
+.pm-content::-webkit-scrollbar,.mb-content::-webkit-scrollbar{width:0}
+.sec{margin-top:22px}
+.sec-lab{font-size:var(--label-small-size);font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--text-tertiary);padding:0 4px 8px}
+.tc-tail{padding:16px 4px 0;font-size:var(--label-small-size);color:var(--text-muted);line-height:1.45}
+.card-plain{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-1);padding:14px}
+.tc-safe{display:block;height:0}
+.pm-intro{font-size:var(--body-medium-size);color:var(--text-secondary);line-height:1.45;padding:0 4px 16px;text-wrap:pretty}
+/* PromotionCard */
+.pm-lista{display:flex;flex-direction:column;gap:12px}
+.pm-card{width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-1);overflow:hidden;cursor:pointer;transition:background 150ms cubic-bezier(0.4,0,0.2,1)}
+.pm-card:active{background:var(--gray-50)}
+.pm-card:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px}
+.pm-card.featured{border-color:var(--cinnabar-200);box-shadow:var(--shadow-2)}
+.pm-img{aspect-ratio:16/6;background:repeating-linear-gradient(135deg,var(--gray-200) 0 8px,var(--gray-100) 8px 16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-bottom:1px solid var(--border)}
+.pm-img.alto{aspect-ratio:16/8}
+.pm-img span{font-size:var(--label-small-size);color:var(--text-muted)}
+.pm-body{padding:14px}
+.pm-benef{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:var(--radius-full);background:var(--color-primary-light);color:var(--color-primary);font-size:var(--label-small-size);font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.pm-benef.g{height:30px;padding:0 12px;font-size:var(--label-large-size);background:var(--color-primary);color:#fff}
+.pm-tit{font-size:var(--title-medium-size);font-weight:700;letter-spacing:-.2px;line-height:1.25;margin-top:10px;text-wrap:pretty}
+.pm-card.featured .pm-tit{font-size:var(--title-large-size);line-height:1.22}
+.pm-desc{font-size:var(--body-medium-size);color:var(--text-secondary);line-height:1.45;margin-top:6px;text-wrap:pretty}
+.pm-pie{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border-light)}
+.pm-vig{display:inline-flex;align-items:center;gap:6px;font-size:var(--label-small-size);color:var(--text-tertiary)}
+.pm-ver{display:inline-flex;align-items:center;gap:3px;font-size:var(--label-large-size);font-weight:700;color:var(--color-primary);white-space:nowrap}
+/* Variante compacta (Home) */
+.pm-card.compact{display:flex;align-items:center;gap:12px;padding:12px}
+.pm-mini-img{width:52px;height:52px;flex-shrink:0;border-radius:var(--radius-sm);background:repeating-linear-gradient(135deg,var(--gray-200) 0 6px,var(--gray-100) 6px 12px);display:flex;align-items:center;justify-content:center}
+.pm-mini-tx{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.pm-mini-tit{font-size:var(--label-large-size);font-weight:700;line-height:1.3;text-align:left}
+.pm-mini-vig{font-size:var(--label-small-size);color:var(--text-tertiary)}
+/* Detalle */
+.pm-det-head{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:16px 2px 0}
+.pm-det-head h2{font-size:var(--headline-small-size,24px);font-weight:700;letter-spacing:-.4px;line-height:1.2;text-wrap:pretty}
+.pm-det-head p{font-size:var(--body-large-size);color:var(--text-secondary);line-height:1.5;text-wrap:pretty}
+.pm-cod{margin-top:20px;padding:14px;border-radius:var(--radius-md);background:var(--surface-2);border:1px dashed var(--border-strong)}
+.pm-cod-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pm-cod-tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pm-cod-lab{font-size:var(--label-small-size);font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--text-tertiary)}
+.pm-cod-tx b{font-size:var(--title-medium-size);font-weight:700;letter-spacing:1px;font-variant-numeric:tabular-nums}
+.pm-cod-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:40px;padding:0 14px;flex-shrink:0;border:1px solid var(--border-strong);border-radius:var(--radius-xs);font-size:var(--label-large-size);font-weight:500;color:var(--text-primary)}
+.pm-cod-btn:active{background:var(--gray-100)}
+.pm-cod-btn.ok{border-color:var(--green-600,#4a9f11);color:var(--green-800,#2f6a0a)}
+.pm-cod-hint{margin-top:10px;font-size:var(--label-small-size);color:var(--text-secondary);line-height:1.45}
+.pm-aplica{display:flex;flex-direction:column;gap:10px}
+.pm-aplica-it{display:flex;align-items:flex-start;gap:8px;font-size:var(--body-medium-size);color:var(--text-primary);line-height:1.4}
+.pm-cond{display:flex;flex-direction:column;gap:8px;padding:2px 4px}
+.pm-cond li{list-style:none;position:relative;padding-left:16px;font-size:var(--body-medium-size);color:var(--text-secondary);line-height:1.45;text-wrap:pretty}
+.pm-cond li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:var(--radius-full);background:var(--color-primary)}
+.pm-terminos{padding:2px 4px;font-size:var(--label-small-size);color:var(--text-tertiary);line-height:1.5;text-wrap:pretty}
+.pm-nota{display:flex;gap:8px;padding:10px 12px;border-radius:var(--radius-sm);background:var(--gray-100);font-size:var(--label-small-size);color:var(--text-secondary);line-height:1.45}
+.tc-section-head .tc-link{font-size:var(--label-large-size);font-weight:500;color:var(--color-primary)}
+/* Estados vacíos y error */
+.vj-vacio{display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 16px 0;gap:8px}
+.vj-vacio-ic{width:56px;height:56px;border-radius:var(--radius-full);background:var(--color-primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.vj-vacio-ic.err{background:var(--cinnabar-50)}
+.vj-vacio h3{font-size:var(--title-medium-size);font-weight:700;text-wrap:pretty}
+.vj-vacio p{font-size:var(--body-medium-size);color:var(--text-secondary);line-height:1.5;max-width:280px;text-wrap:pretty}
+.vj-vacio-cta{margin-top:16px}
+/* Skeleton */
+.sk-pm{cursor:default}
+.sk{display:block;border-radius:var(--radius-xs);background:var(--gray-200);animation:pmpulse 1200ms ease-in-out infinite}
+@keyframes pmpulse{0%,100%{opacity:1}50%{opacity:.45}}
+/* Listas de datos */
+.vj-datos-lista{display:flex;flex-direction:column}
+.vj-dato{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid var(--border-light)}
+.vj-dato:first-child{border-top:none;padding-top:2px}
+.vj-dato span{font-size:var(--label-small-size);color:var(--text-tertiary);flex-shrink:0}
+.vj-dato b{font-size:var(--label-large-size);font-weight:500;text-align:right}
+.mb-cta{position:absolute;left:0;right:0;bottom:0;z-index:3;background:var(--surface-2);border-top:1px solid var(--border);box-shadow:var(--shadow-3);padding:12px 16px 20px;display:flex;flex-direction:column;gap:6px}
+.cta-hint{text-align:center;font-size:var(--label-small-size);color:var(--text-tertiary)}
+/* Bottom nav */
+.tc-nav{height:64px;flex-shrink:0;display:flex;background:var(--surface-2);border-top:1px solid var(--border);z-index:2}
+.tc-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--text-tertiary)}
+.tc-nav-item.on{color:var(--color-primary)}
+/* Controles de demostración */
+.demo{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:560px}
+.demo-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.demo-btn{height:34px;padding:0 12px;border-radius:var(--radius-full);background:var(--surface-2);border:1px solid var(--border);font-size:var(--label-small-size);font-weight:500;color:var(--text-secondary)}
+.demo-btn.on{background:var(--color-primary-light);border-color:var(--cinnabar-200);color:var(--color-primary)}
+.notes{width:100%;max-width:840px}
+.notes h3{font-size:var(--title-small-size);font-weight:700;margin-bottom:12px}
+.notes ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 32px}
+.notes li{list-style:none;font-size:var(--body-small-size);line-height:1.5;color:var(--text-secondary);padding:10px 0;border-top:1px solid var(--border)}
+.notes b{color:var(--text-primary);font-weight:500}
+@media (max-width:520px){.notes{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<aside class="notes">
+<h3>Decisiones del módulo</h3>
+<ul>
+<li><b>Sección raíz.</b> El app bar muestra solo “Promociones”: sin flecha atrás y sin botón Home, igual que Mis viajes. Tampoco se agrega icono de información porque hoy no tendría función real.</li>
+<li><b>Un solo componente, tres variantes.</b> PromotionCard compacta (Home), estándar (Promos) y destacada. El detalle es PromotionDetail. No hay banners hechos a medida por pantalla.</li>
+<li><b>La tarjeta solo responde “¿me interesa?”</b>: beneficio, título, descripción corta, vigencia y “Ver promoción”. Condiciones, términos y código viven en el detalle.</li>
+<li><b>Destacada es opcional.</b> Si no hay una promoción marcada como destacada, la lista se muestra plana, sin inventar contenido para llenar el espacio.</li>
+<li><b>Sin filtros por ahora.</b> No se copia el selector mensual: las promociones vigentes son pocas. La lista queda preparada para chips de categoría cuando existan categorías reales.</li>
+<li><b>La imagen es opcional.</b> Cuando existe, mantiene proporción fija; cuando no, la tarjeta funciona igual. El beneficio nunca vive solo dentro de la imagen.</li>
+<li><b>Beneficio con etiqueta e icono</b>, no solo con color. La destacada usa la etiqueta en rojo sólido; las demás, el fondo claro de marca.</li>
+<li><b>Código promocional solo si existe.</b> Se muestra en el detalle con acción Copiar y explica que se ingresa en el paso de pago, que es donde el checkout ya lo soporta.</li>
+<li><b>“Aprovechar promoción”</b> lleva a la búsqueda con lo que el backend puede preconfigurar (ruta y fechas de vigencia). Cuando la promo depende de código, el CTA lo dice en el microcopy en vez de prometer un descuento automático.</li>
+<li><b>Vacío ≠ error.</b> “No hay promociones disponibles por ahora” con CTA secundario “Buscar pasajes”; el error usa “No pudimos cargar las promociones” con Reintentar. Icono discreto, sin ilustración grande.</li>
+<li><b>Skeleton con la forma de las tarjetas</b>, sin promociones falsas mientras carga.</li>
+<li><b>Bottom navigation:</b> visible en la lista con Promos activo; oculto en el detalle, que usa el app bar secundario “← Detalle de promoción”.</li>
+<li><b>Promociones vencidas:</b> fuera de esta pantalla. No se diseña historial hasta que exista la necesidad real.</li>
+<li><b>Contenido de ejemplo.</b> Los textos sirven para validar la jerarquía; las promociones reales, sus rutas y sus términos los define marketing.</li>
+<li><b>Por confirmar:</b> qué parámetros acepta la búsqueda desde el CTA y si el banner tendrá una medida única para todas las promociones.</li>
+</ul>
+</aside>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/_ds_bundle.js"></script>
+<script type="text/babel" src="tc-promos.jsx"></script>
+<script type="text/babel" src="tc-promos-modulo.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Variantes de App Bar · Home TC</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);padding:40px 24px 64px}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+.page{max-width:1160px;margin:0 auto}
+h1{font-size:var(--headline-small-size);font-weight:700}
+.sub{font-size:var(--body-medium-size);color:var(--text-secondary);margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;margin-top:32px}
+.opt{display:flex;flex-direction:column;gap:12px}
+.opt h2{font-size:var(--title-small-size);font-weight:700}
+.opt p{font-size:var(--body-small-size);color:var(--text-secondary);line-height:1.5}
+.frame{width:100%;max-width:390px;border:8px solid #0a0b0b;border-bottom:none;border-radius:44px 44px 0 0;overflow:hidden;background:var(--color-background);box-shadow:var(--shadow-3)}
+.crop{height:320px;display:flex;flex-direction:column;background:var(--color-background)}
+.crop > *{flex-shrink:0}
+.hero{padding:20px 16px 0}
+.hero h3{font-size:var(--headline-small-size);font-weight:700;margin:0}
+.hero span{display:block;font-size:var(--body-medium-size);color:var(--text-secondary);margin-top:4px}
+.card{margin:16px;height:96px;border-radius:var(--radius-md);background:var(--surface-2);box-shadow:var(--shadow-1);display:flex;align-items:center;padding:16px;gap:12px}
+.ghost{height:12px;border-radius:var(--radius-full);background:var(--gray-200)}
+.icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full)}
+/* A */
+.barA{height:72px;position:relative;display:flex;align-items:center;justify-content:center;background:var(--surface-2);border-bottom:1px solid var(--border);padding:0 8px}
+.barA .icon{position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+/* B */
+.barB{height:72px;display:flex;align-items:center;gap:12px;background:var(--surface-2);border-bottom:1px solid var(--border);padding:0 8px 0 16px}
+/* C */
+.barC{height:96px;position:relative;display:flex;align-items:center;justify-content:center;background:var(--color-primary);padding:0 8px}
+.barC .icon{position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+/* E */
+.wrapE{background:var(--surface-2)}
+.barE{height:96px;position:relative;display:flex;align-items:center;justify-content:center;background:var(--color-primary);padding:0 8px;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.barE .icon{position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+/* F */
+.barF{height:112px;position:relative;display:flex;align-items:center;justify-content:center;background:var(--color-primary);padding:0 8px 16px}
+.barF .icon{position:absolute;right:8px;top:34px}
+.sheetF{background:var(--color-background);border-radius:var(--radius-lg) var(--radius-lg) 0 0;margin-top:-16px;position:relative;z-index:1;flex:1}
+/* D */
+.barD{padding:24px 16px 16px;background:var(--surface-2);position:relative;display:flex;flex-direction:column;align-items:center;gap:8px}
+.barD .icon{position:absolute;right:8px;top:16px}
+.barD .greet{font-size:var(--label-small-size);color:var(--text-tertiary);letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>App bar · cuatro variantes</h1>
+<p class="sub">Mismo logotipo, misma paleta y mismos tokens. Cambia solo la presencia de la marca en la parte superior.</p>
+<div class="grid">
+
+<div class="opt">
+<h2>A · Centrado sobre superficie blanca <span style="color:var(--text-tertiary);font-weight:400">(actual)</span></h2>
+<p>Logo de 40px centrado respecto al ancho completo, soporte a la derecha. Neutro y estable; la marca acompaña pero no compite con el buscador.</p>
+<div class="frame"><div class="crop">
+<div class="barA"><img src="assets/tc-logotipo.svg" alt="Transportes Chiclayo" style="height:40px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.8" stroke-linecap="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div></div>
+<div class="hero"><h3>¿A dónde viajas?</h3><span>Compra tu pasaje en menos de un minuto.</span></div>
+<div class="card"><div class="ghost" style="width:60%"></div></div>
+</div></div>
+</div>
+
+<div class="opt">
+<h2>B · Alineado a la izquierda, mayor tamaño</h2>
+<p>Logo de 44px a la izquierda con el margen de 16px del sistema. Lectura natural en occidental y deja el centro libre para futuros títulos de pantalla.</p>
+<div class="frame"><div class="crop">
+<div class="barB"><img src="assets/tc-logotipo.svg" alt="Transportes Chiclayo" style="height:44px"><div class="icon" style="margin-left:auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.8" stroke-linecap="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div></div>
+<div class="hero"><h3>¿A dónde viajas?</h3><span>Compra tu pasaje en menos de un minuto.</span></div>
+<div class="card"><div class="ghost" style="width:60%"></div></div>
+</div></div>
+</div>
+
+<div class="opt">
+<h2>C · Banda de marca en rojo primario</h2>
+<p>App bar de 96px en <b>#e73b2b</b> con logotipo blanco centrado. Máxima presencia de marca al abrir; el buscador entra sobre superficie clara y el contraste refuerza la jerarquía.</p>
+<div class="frame"><div class="crop">
+<div class="barC"><img src="assets/tc-logotipo-blanco.svg" alt="Transportes Chiclayo" style="height:44px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div></div>
+<div class="hero"><h3>¿A dónde viajas?</h3><span>Compra tu pasaje en menos de un minuto.</span></div>
+<div class="card"><div class="ghost" style="width:60%"></div></div>
+</div></div>
+</div>
+
+<div class="opt">
+<h2>D · Logo centrado con saludo</h2>
+<p>Logo de 44px centrado y, debajo, el saludo al usuario. El app bar se funde con el contenido (sin borde) y da un arranque más personal sin restar peso a la marca.</p>
+<div class="frame"><div class="crop">
+<div class="barD"><img src="assets/tc-logotipo.svg" alt="Transportes Chiclayo" style="height:44px"><span class="greet">Hola, Emil · Chiclayo</span><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.8" stroke-linecap="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div></div>
+<div class="hero"><h3>¿A dónde viajas?</h3><span>Compra tu pasaje en menos de un minuto.</span></div>
+<div class="card"><div class="ghost" style="width:60%"></div></div>
+</div></div>
+</div>
+
+<div class="opt">
+<h2>E · Banda roja con base curva</h2>
+<p>Misma presencia de marca que C, pero la banda cierra con radio de 16px (<code>--radius-lg</code>) y el contenido arranca sobre superficie clara. Suaviza el corte recto y marca el inicio del área de compra.</p>
+<div class="frame"><div class="crop">
+<div class="wrapE"><div class="barE"><img src="assets/tc-logotipo-blanco.svg" alt="Transportes Chiclayo" style="height:44px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div></div></div>
+<div class="hero"><h3>¿A dónde viajas?</h3><span>Compra tu pasaje en menos de un minuto.</span></div>
+<div class="card"><div class="ghost" style="width:60%"></div></div>
+</div></div>
+</div>
+
+<div class="opt">
+<h2>F · Banda roja con hoja de contenido superpuesta</h2>
+<p>El radio vive en la superficie blanca: el contenido sube 16px sobre la banda roja y la tapa con esquinas redondeadas. La marca queda de fondo y el área de compra se lee como una capa por encima.</p>
+<div class="frame"><div class="crop">
+<div class="barF"><img src="assets/tc-logotipo-blanco.svg" alt="Transportes Chiclayo" style="height:44px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div></div>
+<div class="sheetF">
+<div class="hero" style="padding-top:24px"><h3>¿A dónde viajas?</h3><span>Compra tu pasaje en menos de un minuto.</span></div>
+<div class="card"><div class="ghost" style="width:60%"></div></div>
+</div>
+</div></div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

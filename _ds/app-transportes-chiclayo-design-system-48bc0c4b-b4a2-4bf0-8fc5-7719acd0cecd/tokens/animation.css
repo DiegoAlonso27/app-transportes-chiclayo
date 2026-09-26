@@ -1,0 +1,20 @@
+:root {
+/* Animation Durations (Material Design 3) @kind other */
+--duration-short: 150ms; /* @kind other */
+--duration-standard: 300ms; /* @kind other */
+--duration-long: 500ms; /* @kind other */
+--duration-extra-long: 700ms; /* @kind other */
+
+/* Easing Functions (Material Design 3) @kind other */
+--ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+--ease-decelerate: cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+--ease-accelerate: cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+--ease-sharp: cubic-bezier(0.4, 0, 0.6, 1); /* @kind other */
+--ease-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1); /* @kind other */
+--ease-emphasized: cubic-bezier(0.3, 0, 0.8, 0.15); /* @kind other */
+
+/* Transitions @kind other */
+--transition-fast: --duration-short var(--ease-standard); /* @kind other */
+--transition-base: var(--duration-standard) var(--ease-standard); /* @kind other */
+--transition-slow: var(--duration-long) var(--ease-standard); /* @kind other */
+}

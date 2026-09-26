@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selección de asiento · App Transportes Chiclayo</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/animation.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:24px;padding:32px 24px 40px}
+button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+.device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background)}
+#phone-root{height:100%}
+.tc-screen{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background)}
+.tc-icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full)}
+.tc-icon-btn.light:active{background:rgba(255,255,255,.16)}
+/* App bar + resumen del viaje */
+.tc-appbar{flex-shrink:0;background:var(--color-primary);padding:8px 8px 26px;display:flex;flex-direction:column;gap:8px}
+.tc-appbar-top{display:flex;align-items:center;justify-content:space-between}
+.tc-title{font-size:var(--title-large-size);font-weight:700;color:#fff;letter-spacing:-.2px}
+.tc-trip{margin:0 8px;display:flex;flex-direction:column;gap:6px}
+.tc-trip-main{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.tc-trip-ruta{display:flex;align-items:center;gap:5px;font-size:var(--title-medium-size);font-weight:700;color:#fff}
+.tc-trip-horas{display:flex;align-items:center;gap:6px;font-size:var(--label-large-size);font-weight:500;color:rgba(255,255,255,.9);font-variant-numeric:tabular-nums}
+.tc-dot{opacity:.6}
+.tc-nextday{display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:var(--radius-full);background:var(--color-secondary-container);color:var(--yellow-900);font-size:var(--label-small-size);font-weight:700}
+.tc-puntos summary{list-style:none;display:inline-flex;align-items:center;gap:4px;font-size:var(--label-small-size);color:rgba(255,255,255,.85);cursor:pointer;padding:2px 0}
+.tc-puntos summary::-webkit-details-marker{display:none}
+.tc-puntos[open] summary svg{transform:rotate(180deg)}
+.tc-punto{display:flex;gap:6px;padding-top:8px;font-size:var(--label-small-size);line-height:1.4;color:rgba(255,255,255,.85)}
+.tc-punto b{display:block;color:#fff;font-weight:700}
+/* Contenido */
+.tc-content{flex:1;overflow-y:auto;overscroll-behavior:contain;background:var(--gray-50);border-radius:var(--radius-lg) var(--radius-lg) 0 0;margin-top:-16px;position:relative;z-index:1;padding-bottom:168px}
+.tc-content::-webkit-scrollbar{width:0}
+.tc-stick{position:sticky;top:0;z-index:2;background:var(--gray-50);padding:12px 16px 8px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;border-bottom:1px solid var(--border-light)}
+/* Selector de piso */
+.tc-tabs{display:flex;gap:4px;padding:4px;background:var(--gray-200);border-radius:var(--radius-sm)}
+.tc-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 4px;border-radius:var(--radius-xs);font-size:var(--label-large-size);font-weight:500;color:var(--text-secondary);transition:background 150ms cubic-bezier(0.4,0,0.2,1),color 150ms cubic-bezier(0.4,0,0.2,1)}
+.tc-tab.on{background:var(--surface-2);color:var(--color-primary);font-weight:700;box-shadow:var(--shadow-1)}
+.tc-tab-sub{font-size:var(--label-small-size);font-weight:400;color:var(--text-tertiary)}
+.tc-tab.on .tc-tab-sub{color:var(--text-secondary)}
+.tc-planoinfo{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:10px 2px 0;font-size:var(--label-small-size);color:var(--text-tertiary)}
+.tc-planoinfo b{color:var(--text-primary);font-weight:700}
+/* Leyenda compacta horizontal */
+.tc-leyenda{display:flex;align-items:center;gap:16px;padding:8px 2px 2px;list-style:none}
+.tc-leyenda li{display:flex;align-items:center;gap:6px;font-size:var(--label-small-size);color:var(--text-secondary)}
+.lg{width:16px;height:16px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lg-libre{background:var(--surface-2);border:1.5px solid var(--border-strong)}
+.lg-sel{background:var(--color-primary)}
+.lg-occ{background:repeating-linear-gradient(135deg,var(--gray-200) 0 3px,var(--gray-300) 3px 6px);border:1.5px solid var(--gray-300)}
+/* Croquis */
+.tc-croquis-wrap{padding:12px 16px 0}
+.croquis-front{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding-bottom:12px}
+.croquis-front span:first-child,.croquis-front span:last-child{height:1px;background:var(--border)}
+.croquis-front-l{display:flex;align-items:center;gap:4px;font-size:var(--label-small-size);font-weight:500;color:var(--text-tertiary);white-space:nowrap}
+.croquis-grid{display:grid;gap:8px;justify-items:center;align-items:stretch}
+.cell-aisle{width:100%}
+.cell-fix{width:100%;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:var(--radius-sm);background:var(--gray-100);border:1px dashed var(--border-strong);font-size:var(--label-small-size);color:var(--text-tertiary);text-align:center;line-height:1.2}
+/* Asiento */
+.seat{position:relative;width:100%;max-width:64px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);font-size:var(--label-large-size);font-weight:700;font-variant-numeric:tabular-nums;transition:background-color 150ms cubic-bezier(0.4,0,0.2,1),border-color 150ms cubic-bezier(0.4,0,0.2,1),color 150ms cubic-bezier(0.4,0,0.2,1)}
+.seat::before{content:"";position:absolute;top:5px;left:50%;transform:translateX(-50%);width:46%;height:3px;border-radius:var(--radius-full);background:currentColor;opacity:.35}
+.seat-libre{background:var(--surface-2);border:1.5px solid var(--border-strong);color:var(--text-primary);box-shadow:var(--shadow-1)}
+.seat-libre:active{background:var(--color-primary-light);border-color:var(--color-primary)}
+.seat-sel{background:var(--color-primary);border:1.5px solid var(--color-primary);color:#fff;box-shadow:var(--shadow-2)}
+.seat-ocupado{background:repeating-linear-gradient(135deg,var(--gray-100) 0 4px,var(--gray-200) 4px 8px);border:1.5px solid var(--gray-300);color:var(--gray-600);cursor:not-allowed;box-shadow:none}
+.seat:disabled{cursor:not-allowed}
+.seat-libre:disabled{opacity:.5}
+.seat-num{position:relative;top:3px}
+.seat-mark{position:absolute;top:-5px;right:-5px;width:18px;height:18px;border-radius:var(--radius-full);background:#fff;border:1.5px solid var(--color-primary);display:flex;align-items:center;justify-content:center}
+.seat-x{position:absolute;top:6px;right:6px;width:9px;height:9px;background:linear-gradient(to bottom right,transparent 44%,var(--gray-500) 44% 56%,transparent 56%),linear-gradient(to bottom left,transparent 44%,var(--gray-500) 44% 56%,transparent 56%)}
+.tc-agotado{display:flex;gap:8px;align-items:flex-start;margin:12px 16px 0;padding:12px 14px;border-radius:var(--radius-sm);background:var(--color-secondary-container);color:var(--yellow-900);font-size:var(--label-small-size);line-height:1.45}
+.tc-agotado b{font-weight:700}
+.tc-tail{padding:14px 20px 8px;font-size:var(--label-small-size);color:var(--text-muted);text-align:center;line-height:1.45}
+/* CTA sticky */
+.tc-cta{position:absolute;left:0;right:0;bottom:0;z-index:3;background:var(--surface-2);border-top:1px solid var(--border);box-shadow:var(--shadow-3);padding:10px 16px 0;display:flex;flex-direction:column;gap:10px}
+.tc-resumen{min-height:42px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tc-resumen-empty{font-size:var(--label-small-size);color:var(--text-tertiary)}
+.tc-resumen-l{display:flex;flex-direction:column;gap:1px;min-width:0}
+.tc-resumen-l b{font-size:var(--title-medium-size);font-weight:700;line-height:1.2}
+.tc-resumen-l span{font-size:var(--label-small-size);color:var(--text-tertiary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc-resumen-r{font-size:var(--title-large-size);font-weight:700;color:var(--color-primary);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tc-aviso{margin-top:-4px;font-size:var(--label-small-size);color:var(--color-error)}
+.tc-safe{display:block;height:22px}
+/* Demo + notas (fuera del teléfono) */
+.demo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.demo-l{font-size:var(--label-small-size);color:var(--text-tertiary)}
+.demo button{height:36px;padding:0 14px;border-radius:var(--radius-full);border:1px solid var(--border-strong);background:var(--surface-2);font-size:var(--label-large-size);font-weight:500;color:var(--text-secondary)}
+.demo button.on{background:var(--color-primary-light);border-color:var(--cinnabar-200);color:var(--color-primary)}
+.notes{width:100%;max-width:840px}
+.notes h3{font-size:var(--title-small-size);font-weight:700;margin-bottom:12px}
+.notes ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 32px}
+.notes li{list-style:none;font-size:var(--body-small-size);line-height:1.5;color:var(--text-secondary);padding:10px 0;border-top:1px solid var(--border)}
+.notes b{color:var(--text-primary);font-weight:500}
+.notes code{font-family:ui-monospace,monospace;font-size:12px;background:var(--gray-100);padding:1px 5px;border-radius:var(--radius-xs)}
+@media (max-width:520px){.notes{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="demo-bar" class="demo">
+<span class="demo-l">Configuración del bus (dato del servicio)</span>
+<button data-bus="cama" class="on">2 pisos · 2+1 / 2+2</button>
+<button data-bus="semi">1 piso · 2+2</button>
+<button data-bus="lleno">Sin cupos</button>
+</div>
+<div class="device"><div id="phone-root"></div></div>
+<aside class="notes">
+<h3>Decisiones sobre el croquis</h3>
+<ul>
+<li><b>El plano viene de datos, no del maquetado.</b> Cada piso se describe con una matriz de celdas (<code>01 02 . 03</code>) donde el punto es pasillo, el guion bajo un hueco y <code>CD / WC / ES / PT</code> conductor, baño, escalera y puerta. El componente calcula columnas, pasillos y spans; sirve para 1+2, 2+2, filas irregulares y uno o dos pisos.</li>
+<li><b>Disponibilidad y precio separados del plano</b>, como llegarían del backend: lista de ocupados y precio por piso con excepciones por asiento (las primeras filas cuestan más y el total lo refleja).</li>
+<li><b>Leyenda horizontal encima del croquis</b> en lugar de la columna lateral de la referencia: el mapa usa todo el ancho útil y los asientos quedan de 64 px.</li>
+<li><b>Estados sin depender del color:</b> disponible es superficie blanca con borde; ocupado lleva trama diagonal y aspa; seleccionado es relleno rojo con check. Ocupado conserva el número legible en gris 600.</li>
+<li><b>Resumen inferior sobre el CTA:</b> asiento y precio real actualizados al tocar, y el botón pasa de <i>Continuar</i> deshabilitado a <i>Continuar · S/ 43</i>.</li>
+<li><b>Selector de piso solo si el bus tiene dos</b>, con los libres de cada piso y conservando la selección al cambiar.</li>
+<li><b>Resumen del viaje comprimido en el app bar</b> rojo, con los puntos de embarque plegados: confirma el contexto sin repetir la tarjeta del servicio.</li>
+<li><b>Orientación</b> resuelta con una línea discreta “Frente del bus” y la celda del conductor, sin dibujar la carrocería.</li>
+<li><b>Scroll natural</b> con 168 px de espacio inferior para que la zona sticky nunca tape la última fila; safe-area incluida.</li>
+</ul>
+</aside>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/_ds_bundle.js"></script>
+<script type="text/babel" src="tc-asientos.jsx"></script>
+</body>
+</html>

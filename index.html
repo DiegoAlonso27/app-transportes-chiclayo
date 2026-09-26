@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototipo navegable · App Transportes Chiclayo</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/animation.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<link rel="stylesheet" href="tc-proto.css">
+<link rel="stylesheet" href="tc-auth-base.css">
+<link rel="stylesheet" href="tc-auth.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+.device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background);zoom:1.15}
+@media (max-height:1050px){.device{zoom:1.05}}
+@media (max-height:960px){.device{zoom:.95}}
+@media (max-height:880px){.device{zoom:.86}}
+#phone-root{position:relative;height:100%;overflow:hidden}
+#sheet-host{position:absolute;inset:0;z-index:50;pointer-events:none}
+#sheet-host>*{pointer-events:auto}
+.scr-aut{position:absolute;inset:0;z-index:55;background:var(--color-background)}
+.scr{height:100%}
+.scr-overlay{position:absolute;inset:0;z-index:60;pointer-events:none}
+/* Compra confirmada */
+.scr-cfm .tc-screen{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background)}
+.scr-cfm .cf-content{flex:1;overflow-y:auto;padding:40px 20px 8px;scrollbar-width:none}
+.scr-cfm .cf-content::-webkit-scrollbar{width:0}
+.scr-cfm .cf-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.scr-cfm .cf-ok{width:64px;height:64px;border-radius:var(--radius-full);background:var(--color-success);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-2)}
+.scr-cfm .cf-hero h1{font-size:var(--headline-small-size);font-weight:700;line-height:1.25}
+.scr-cfm .cf-hero p{font-size:var(--body-medium-size);color:var(--text-secondary);max-width:264px;text-wrap:pretty}
+.scr-cfm .cf-mail{display:flex;align-items:center;gap:9px;margin-top:20px;padding:12px 14px;border-radius:var(--radius-sm);background:var(--color-primary-light);font-size:var(--body-small-size);color:var(--text-secondary)}
+.scr-cfm .cf-mail b{color:var(--text-primary);font-weight:500;word-break:break-all}
+.scr-cfm .cf-card{margin-top:14px;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface-2);overflow:hidden}
+.scr-cfm .cf-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border-light)}
+.scr-cfm .cf-ruta{display:flex;align-items:center;gap:7px;font-size:var(--title-small-size);font-weight:500}
+.scr-cfm .cf-fecha{font-size:var(--label-small-size);color:var(--text-tertiary);text-align:right}
+.scr-cfm .cf-horas{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.scr-cfm .cf-h{display:flex;flex-direction:column;gap:3px;min-width:0}
+.scr-cfm .cf-h.fin{align-items:flex-end;text-align:right}
+.scr-cfm .cf-h b{font-size:22px;font-weight:700;letter-spacing:-.5px;display:flex;align-items:center;gap:5px}
+.scr-cfm .cf-h span{font-size:var(--label-small-size);color:var(--text-tertiary)}
+.scr-cfm .cf-mas1{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:500;color:var(--text-tertiary)}
+.scr-cfm .cf-riel{flex:1;height:1px;background:var(--border-strong);position:relative}
+.scr-cfm .cf-riel i{position:absolute;inset:0;margin:auto;width:5px;height:5px;border-radius:50%;background:var(--gray-400)}
+.scr-cfm .cf-datos{border-top:1px solid var(--border-light);padding:4px 16px 12px}
+.scr-cfm .cf-datos>div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--border-light)}
+.scr-cfm .cf-datos>div:last-child{border-bottom:none}
+.scr-cfm .cf-datos span{font-size:var(--body-small-size);color:var(--text-tertiary);flex-shrink:0}
+.scr-cfm .cf-datos b{font-size:var(--body-medium-size);font-weight:500;text-align:right}
+.scr-cfm .cf-total b{font-size:var(--title-medium-size);font-weight:700;color:var(--color-primary)}
+.scr-cfm .cf-nota{display:flex;align-items:flex-start;gap:7px;margin:14px 2px 0;font-size:var(--label-small-size);line-height:1.5;color:var(--text-tertiary);text-wrap:pretty}
+.scr-cfm .cf-cta{flex-shrink:0;display:flex;flex-direction:column;gap:4px;padding:12px 16px 0;background:var(--surface-2);border-top:1px solid var(--border)}
+.scr-cfm .tc-safe{display:block;height:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="device"><div id="phone-root"></div></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/_ds_bundle.js"></script>
+<script>window.__TC_PROTO = true;</script>
+<script type="text/babel" src="tc-promos.jsx"></script>
+<script type="text/babel" src="tc-campos.jsx"></script>
+<script type="text/babel" src="tc-viajes.jsx"></script>
+<script type="text/babel" src="tc-cuenta-pantallas.jsx"></script>
+<script type="text/babel" src="tc-home.jsx"></script>
+<script type="text/babel" src="tc-resultados.jsx"></script>
+<script type="text/babel" src="tc-asientos.jsx"></script>
+<script type="text/babel" src="tc-pasajeros.jsx"></script>
+<script type="text/babel" src="tc-terminos.jsx"></script>
+<script type="text/babel" src="tc-viajes-modulo.jsx"></script>
+<script type="text/babel" src="tc-promos-modulo.jsx"></script>
+<script type="text/babel" src="tc-cuenta-modulo.jsx"></script>
+<script type="text/babel" src="tc-proto-confirmacion.jsx"></script>
+<script type="text/babel" src="tc-auth.jsx"></script>
+<script type="text/babel" src="tc-auth-2fa.jsx"></script>
+<script type="text/babel" src="tc-proto.jsx"></script>
+</body>
+</html>

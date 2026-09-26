@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autenticación · App Transportes Chiclayo</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/animation.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<link rel="stylesheet" href="tc-auth-base.css">
+<link rel="stylesheet" href="tc-auth.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+#app{display:flex;align-items:center;gap:28px;zoom:1}
+@media (max-height:940px){#app{zoom:.92}}
+@media (max-height:860px){#app{zoom:.84}}
+@media (max-height:780px){#app{zoom:.76}}
+button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+.device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background)}
+#phone-root{position:relative;height:100%;overflow:hidden}
+#sheet-host{position:absolute;inset:0;z-index:50;pointer-events:none}
+#sheet-host>*{pointer-events:auto}
+.scr-aut .toast{position:absolute;left:16px;right:16px;bottom:28px;z-index:60;display:flex;align-items:center;gap:8px;padding:14px 16px;border-radius:var(--radius-sm);background:var(--gray-900);color:#fff;font-size:var(--label-large-size);box-shadow:var(--shadow-3)}
+.panel{width:300px;max-height:844px;overflow-y:auto;flex-shrink:0;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-1);padding:20px 16px}
+.panel-h h1{font-size:var(--title-large-size);font-weight:700;letter-spacing:-.2px}
+.panel-h p{margin-top:6px;font-size:var(--label-small-size);line-height:1.5;color:var(--text-tertiary);text-wrap:pretty}
+.panel-g{margin-top:20px;display:flex;flex-direction:column;gap:2px}
+.panel-g h2{font-size:var(--label-small-size);font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--text-tertiary);padding:0 4px 6px}
+.panel-b{text-align:left;padding:9px 10px;border-radius:var(--radius-xs);font-size:var(--label-large-size);color:var(--text-secondary);min-height:40px}
+.panel-b:hover{background:var(--gray-100)}
+.panel-b.on{background:var(--color-primary-light);color:var(--color-primary);font-weight:700}
+.panel-nota{margin-top:24px;padding:12px;border-radius:var(--radius-sm);background:var(--gray-100);font-size:var(--label-small-size);line-height:1.5;color:var(--text-tertiary)}
+.panel-nota b{color:var(--text-secondary)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/_ds_bundle.js"></script>
+<script>window.__TC_PROTO = true;</script>
+<script type="text/babel" src="tc-campos.jsx"></script>
+<script type="text/babel" src="tc-cuenta-pantallas.jsx"></script>
+<script type="text/babel" src="tc-cuenta-modulo.jsx"></script>
+<script type="text/babel" src="tc-auth.jsx"></script>
+<script type="text/babel" src="tc-auth-2fa.jsx"></script>
+<script type="text/babel" src="tc-auth-app.jsx"></script>
+</body>
+</html>

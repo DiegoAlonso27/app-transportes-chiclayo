@@ -1,0 +1,113 @@
+:root {
+/* Cinnabar (Primary Red) */
+--cinnabar-50: #fff2f1;
+--cinnabar-100: #ffe4e1;
+--cinnabar-200: #ffccc7;
+--cinnabar-300: #ffa9a1;
+--cinnabar-400: #ff776a;
+--cinnabar-500: #f84b3b;
+--cinnabar-600: #e73b2b;
+--cinnabar-700: #c12314;
+--cinnabar-800: #9f2115;
+--cinnabar-900: #842118;
+--cinnabar-950: #480d07;
+
+/* Selective Yellow (Secondary Accent) */
+--yellow-50: #fffdeb;
+--yellow-100: #fffac6;
+--yellow-200: #fff488;
+--yellow-300: #ffe849;
+--yellow-400: #ffd91f;
+--yellow-500: #faba08;
+--yellow-600: #dd8f02;
+--yellow-700: #b86605;
+--yellow-800: #954e0b;
+--yellow-900: #7a400d;
+--yellow-950: #462102;
+
+/* Atlantis (Tertiary Green) */
+--green-50: #f3fde8;
+--green-100: #e3fbcc;
+--green-200: #c8f79f;
+--green-300: #a4ee68;
+--green-400: #73de21;
+--green-500: #63c71b;
+--green-600: #4a9f11;
+--green-700: #397912;
+--green-800: #306014;
+--green-900: #2b5116;
+--green-950: #132d06;
+
+/* Gunsmoke (Neutrals) */
+--gray-50: #f9f9fa;
+--gray-100: #f4f4f5;
+--gray-200: #e5e6e6;
+--gray-300: #d3d4d4;
+--gray-400: #a1a5a5;
+--gray-500: #7d8282;
+--gray-600: #515454;
+--gray-700: #3f4141;
+--gray-800: #262727;
+--gray-900: #191a1a;
+--gray-950: #0a0b0b;
+
+/* Semantic Aliases */
+--color-primary: var(--cinnabar-600);
+--color-primary-light: var(--cinnabar-50);
+--color-primary-container: var(--cinnabar-100);
+--color-on-primary: #ffffff;
+
+--color-secondary: var(--yellow-500);
+--color-secondary-light: var(--yellow-50);
+--color-secondary-container: var(--yellow-100);
+--color-on-secondary: #1f1f1f;
+
+--color-tertiary: #5d7d6d;
+--color-tertiary-light: #dff6ee;
+--color-on-tertiary: #ffffff;
+
+--color-error: #b3261e;
+--color-error-light: #f9dedc;
+--color-on-error: #ffffff;
+
+--color-success: var(--green-600);
+--color-warning: var(--yellow-600);
+--color-info: #0066cc;
+
+--color-background: #fffbfe;
+--color-surface: #fffbfe;
+--color-on-background: #1f1f1f;
+--color-on-surface: #1f1f1f;
+
+--color-outline: var(--gray-500);
+--color-outline-variant: var(--gray-300);
+--color-scrim: #000000;
+
+/* Text Colors */
+--text-primary: var(--gray-900);
+--text-secondary: var(--gray-600);
+--text-tertiary: var(--gray-500);
+--text-muted: var(--gray-400);
+--text-on-primary: #ffffff;
+--text-on-secondary: #1f1f1f;
+
+/* Surface/Background Colors */
+--surface-1: var(--gray-50);
+--surface-2: #ffffff;
+--surface-3: var(--gray-100);
+--surface-dim: var(--gray-200);
+
+/* Border Colors */
+--border: var(--gray-200);
+--border-strong: var(--gray-300);
+--border-light: var(--gray-100);
+
+/* Fill Colors */
+--fill-primary: var(--cinnabar-600);
+--fill-secondary: var(--yellow-500);
+--fill-tertiary: var(--green-600);
+--fill-error: var(--color-error);
+--fill-success: var(--green-600);
+--fill-warning: var(--yellow-600);
+--fill-ghost: var(--gray-100);
+}

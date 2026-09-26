@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datos de pasajeros · App Transportes Chiclayo</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/animation.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:24px;padding:32px 24px 40px}
+button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+.device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background)}
+#phone-root{height:100%}
+.tc-screen{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background)}
+.tc-icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full)}
+.tc-icon-btn.light:active{background:rgba(255,255,255,.16)}
+/* App bar + contexto del viaje */
+.tc-appbar{flex-shrink:0;background:var(--color-primary);padding:8px 8px 26px;display:flex;flex-direction:column;gap:6px}
+.tc-appbar-top{display:flex;align-items:center;justify-content:space-between}
+.tc-title{font-size:var(--title-large-size);font-weight:700;color:#fff;letter-spacing:-.2px}
+.tc-trip{margin:0 10px;display:flex;flex-direction:column;gap:3px}
+.tc-trip-ruta{display:flex;align-items:center;gap:5px;font-size:var(--title-medium-size);font-weight:700;color:#fff}
+.tc-trip-horas{display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:var(--label-small-size);font-weight:500;color:rgba(255,255,255,.9);font-variant-numeric:tabular-nums}
+.tc-dot{opacity:.6}
+/* Contenido */
+.tc-content{flex:1;overflow-y:auto;overscroll-behavior:contain;background:var(--gray-50);border-radius:var(--radius-lg) var(--radius-lg) 0 0;margin-top:-16px;position:relative;z-index:1;padding-bottom:186px}
+.tc-content::-webkit-scrollbar{width:0}
+.tc-stick{position:sticky;top:0;z-index:2;background:var(--gray-50);padding:14px 16px 10px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;border-bottom:1px solid var(--border-light)}
+.tc-prog-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px}
+.tc-prog-top b{font-size:var(--label-large-size);font-weight:700}
+.tc-prog-top span{font-size:var(--label-small-size);color:var(--text-tertiary)}
+.tc-bar{height:4px;border-radius:var(--radius-full);background:var(--gray-200);overflow:hidden}
+.tc-bar span{display:block;height:100%;background:var(--color-secondary);border-radius:var(--radius-full);transition:width 300ms cubic-bezier(0.4,0,0.2,1)}
+/* Secciones */
+.tc-list{padding:16px 16px 0;display:flex;flex-direction:column;gap:10px}
+.sec-t{font-size:var(--title-small-size);font-weight:700;letter-spacing:.1px}
+.sec-h{display:flex;flex-direction:column;gap:4px;padding-top:10px}
+.sec-d{font-size:var(--label-small-size);line-height:1.45;color:var(--text-secondary)}
+.card-plain{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-1);padding:16px 14px;display:flex;flex-direction:column;gap:16px}
+.tc-tail{padding:4px 4px 8px;font-size:var(--label-small-size);color:var(--text-muted);line-height:1.45}
+/* Tarjeta de pasajero (disclosure) */
+.pax{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-1);overflow:hidden;transition:border-color 150ms cubic-bezier(0.4,0,0.2,1)}
+.pax.on{border-color:var(--cinnabar-200);box-shadow:var(--shadow-2)}
+.pax.bad{border-color:var(--color-error)}
+.pax-head{width:100%;display:flex;align-items:center;gap:10px;padding:12px 14px;min-height:64px;text-align:left}
+.pax-head:disabled{cursor:default}
+.pax-badge{width:26px;height:26px;flex-shrink:0;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-size:var(--label-small-size);font-weight:700;font-variant-numeric:tabular-nums}
+.st-todo{background:var(--gray-100);border:1.5px solid var(--border-strong);color:var(--text-secondary)}
+.st-ok{background:var(--color-success)}
+.st-err{background:var(--color-error)}
+.pax-h-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.pax-h-txt b{font-size:var(--label-large-size);font-weight:700}
+.pax-sub{font-size:var(--label-small-size);color:var(--text-tertiary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pax-sub.ok{color:var(--text-primary);font-weight:500}
+.pax-sub.err{color:var(--color-error)}
+.seat-chip{display:inline-flex;align-items:center;gap:4px;flex-shrink:0;padding:4px 9px;border-radius:var(--radius-full);background:var(--gray-100);color:var(--text-secondary);font-size:var(--label-small-size);font-weight:700;font-variant-numeric:tabular-nums}
+.pax-body{padding:14px;display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--border-light)}
+.pax-auto{display:flex;align-items:center;gap:6px;margin-top:-4px;padding:8px 10px;border-radius:var(--radius-sm);background:var(--gray-100);font-size:var(--label-small-size);color:var(--text-secondary)}
+.lnk{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:var(--label-small-size);font-weight:700;color:var(--color-primary);padding:4px}
+/* Campos */
+.f{display:flex;flex-direction:column;gap:6px}
+.f-lab{font-size:var(--label-large-size);font-weight:500;color:var(--text-primary)}
+.f-req{color:var(--color-error)}
+.f-ctl{display:flex;align-items:center;gap:8px;height:52px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--surface-2);transition:border-color 150ms cubic-bezier(0.4,0,0.2,1),box-shadow 150ms cubic-bezier(0.4,0,0.2,1)}
+.f-ctl:focus-within{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary)}
+.f-ctl.err{border-color:var(--color-error)}
+.f-ctl.err:focus-within{box-shadow:0 0 0 1px var(--color-error)}
+.f-ctl.dis{background:var(--gray-100);border-color:var(--border)}
+.f-ctl.dis .f-in{color:var(--text-secondary);-webkit-text-fill-color:var(--text-secondary);opacity:1}
+.f-in{flex:1;min-width:0;width:100%;border:none;outline:none;background:transparent;font-family:var(--font-family);font-size:var(--body-large-size);color:var(--text-primary)}
+.f-in::placeholder{color:var(--text-muted)}
+.f-sel{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:2px}
+.f-ctl.compact .f-in{font-size:var(--body-medium-size)}
+.f-btn{width:100%;text-align:left;cursor:pointer}
+.f-btn:disabled{cursor:default}
+.f-val{font-size:var(--body-large-size);font-variant-numeric:tabular-nums}
+.f-ph{font-size:var(--body-large-size);color:var(--text-muted)}
+.f-doc{display:grid;grid-template-columns:minmax(104px,.44fr) 1fr;gap:8px}
+.f-group{padding-right:12px}
+.f-pref{flex:0 0 auto;width:auto;font-variant-numeric:tabular-nums}
+.f-div{width:1px;align-self:stretch;margin:10px 2px;background:var(--border)}
+.f-msg{display:flex;align-items:flex-start;gap:5px;font-size:var(--label-small-size);line-height:1.4;color:var(--text-tertiary)}
+.f-msg svg{margin-top:1px}
+.f-msg.err{color:var(--color-error)}
+.f-msg.ok{color:var(--color-success)}
+.spin{animation:sp 900ms linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* Hoja inferior del DatePicker */
+.sheet-wrap{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;justify-content:flex-end}
+.sheet-bg{position:absolute;inset:0;background:rgba(10,11,11,.42)}
+.sheet{position:relative;background:var(--surface-2);border-radius:var(--radius-lg) var(--radius-lg) 0 0;box-shadow:var(--shadow-4);padding:6px 12px 0;max-height:78%;display:flex;flex-direction:column;animation:up 300ms cubic-bezier(0.4,0,0.2,1)}
+@keyframes up{from{transform:translateY(24px);opacity:.6}}
+.sheet-grab{width:36px;height:4px;border-radius:var(--radius-full);background:var(--border-strong);margin:2px auto 6px}
+.sheet-h{display:flex;align-items:center;justify-content:space-between;padding-left:6px}
+.sheet-h h3{font-size:var(--title-medium-size);font-weight:700}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 6px}
+.cal-mes{display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:var(--radius-xs);font-size:var(--label-large-size);font-weight:700;color:var(--text-primary)}
+.cal-arrows{display:flex}
+.cal-dow{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:var(--label-small-size);color:var(--text-tertiary);padding-bottom:4px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding-bottom:8px}
+.cal-d{height:44px;border-radius:var(--radius-full);font-size:var(--body-medium-size);color:var(--text-primary);font-variant-numeric:tabular-nums}
+.cal-d:disabled{color:var(--text-muted);cursor:not-allowed}
+.cal-d:active{background:var(--gray-100)}
+.cal-d.on{background:var(--color-primary);color:#fff;font-weight:700}
+.cal-anios{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;overflow-y:auto;padding-bottom:8px}
+.cal-anio{height:44px;border-radius:var(--radius-xs);font-size:var(--body-medium-size);font-variant-numeric:tabular-nums}
+.cal-anio.on{background:var(--color-primary);color:#fff;font-weight:700}
+/* CTA sticky */
+.tc-cta{position:absolute;left:0;right:0;bottom:0;z-index:3;background:var(--surface-2);border-top:1px solid var(--border);box-shadow:var(--shadow-3);padding:10px 16px 0;display:flex;flex-direction:column;gap:10px}
+.tc-resumen{min-height:40px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tc-resumen-l{display:flex;flex-direction:column;gap:1px;min-width:0}
+.tc-resumen-l b{font-size:var(--title-medium-size);font-weight:700;line-height:1.2}
+.tc-resumen-l span{font-size:var(--label-small-size);color:var(--text-tertiary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc-resumen-r{font-size:var(--title-large-size);font-weight:700;color:var(--color-primary);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tc-aviso{display:flex;align-items:center;gap:6px;margin-top:-4px;font-size:var(--label-small-size);color:var(--color-error)}
+.tc-aviso.ok{color:var(--color-success)}
+.tc-safe{display:block;height:22px}
+/* Demo + notas (fuera del teléfono) */
+.demo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.demo-l{font-size:var(--label-small-size);color:var(--text-tertiary)}
+.demo button{height:36px;padding:0 14px;border-radius:var(--radius-full);border:1px solid var(--border-strong);background:var(--surface-2);font-size:var(--label-large-size);font-weight:500;color:var(--text-secondary)}
+.demo button.on{background:var(--color-primary-light);border-color:var(--cinnabar-200);color:var(--color-primary)}
+.notes{width:100%;max-width:840px}
+.notes h3{font-size:var(--title-small-size);font-weight:700;margin-bottom:12px}
+.notes ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 32px}
+.notes li{list-style:none;font-size:var(--body-small-size);line-height:1.5;color:var(--text-secondary);padding:10px 0;border-top:1px solid var(--border)}
+.notes b{color:var(--text-primary);font-weight:500}
+@media (max-width:520px){.notes{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="demo-bar" class="demo">
+<span class="demo-l">Asientos elegidos en la pantalla anterior</span>
+<button data-pax="1">1 pasajero</button>
+<button data-pax="4" class="on">4 pasajeros</button>
+<button data-busq="1" class="on">Búsqueda por documento activa</button>
+</div>
+<div class="device"><div id="phone-root"></div></div>
+<aside class="notes">
+<h3>Decisiones de la pantalla</h3>
+<ul>
+<li><b>Un pasajero abierto a la vez.</b> Cada pasajero es una tarjeta plegable; al guardar se colapsa en un resumen de una línea y se abre el siguiente pendiente. Con 4 pasajeros la pantalla ocupa una pantalla y media en lugar de cuatro formularios completos.</li>
+<li><b>Con un solo pasajero no hay acordeón:</b> la tarjeta se muestra abierta, sin cabecera plegable ni barra de progreso.</li>
+<li><b>Estado sin depender del color:</b> número, check o signo de admiración en la insignia, más el texto de apoyo (“Faltan datos”, el nombre del pasajero, “Revisa los datos marcados”).</li>
+<li><b>El asiento viaja con el pasajero</b> en un chip compacto a la derecha de la cabecera, visible tanto plegado como abierto; también aparece en el app bar y en el resumen del CTA.</li>
+<li><b>Documento agrupado, número con protagonismo:</b> país en su propio campo, y tipo + número en una fila donde el número se lleva el 56 % del ancho.</li>
+<li><b>Búsqueda por documento como capacidad opcional.</b> El interruptor de arriba simula el servicio activo o inactivo; están diseñados los cuatro estados (buscando, encontrado, no encontrado y servicio caído) y en todos se puede escribir a mano. Prueba con 72422111 y con 00000000.</li>
+<li><b>“Fecha de nacimiento”, nunca “Fecha”</b>, con ayuda sobre para qué se usa. El DatePicker abre una hoja inferior con selector de año, porque una fecha de nacimiento está a décadas del mes actual.</li>
+<li><b>Contacto separado</b> con su propio encabezado, fondo sin tarjetas de pasajero y microcopy que explica por qué se piden una sola vez.</li>
+<li><b>Validación al salir del campo</b>, no al pulsar Continuar; el CTA solo se usa como red de seguridad: abre el primer pasajero incompleto y lo desplaza a la vista.</li>
+<li><b>Componentes:</b> Button y Card del Design System; TextField extendido a Select, DatePicker y Phone reutilizando su caja outlined de 52 px, tokens de color, radio y tipografía.</li>
+</ul>
+</aside>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/_ds_bundle.js"></script>
+<script type="text/babel" src="tc-campos.jsx"></script>
+<script type="text/babel" src="tc-pasajeros.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selección de servicio · App Transportes Chiclayo</title>
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/radius.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/tokens/animation.css">
+<link rel="stylesheet" href="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-family);background:var(--gray-100);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px 24px}
+button{font-family:var(--font-family);background:none;border:none;cursor:pointer;color:inherit}
+a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
+.device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background);zoom:1.2}
+@media (max-height:1100px){.device{zoom:1.1}}
+@media (max-height:1000px){.device{zoom:1}}
+#phone-root{height:100%}
+.tc-screen{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background)}
+.tc-icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full)}
+.tc-icon-btn.light:active{background:rgba(255,255,255,.16)}
+/* App bar */
+.tc-appbar-res{flex-shrink:0;background:var(--color-primary);padding:8px 8px 28px;display:flex;flex-direction:column;gap:10px}
+.tc-appbar-top{display:flex;align-items:center;justify-content:space-between}
+.tc-ruta{display:flex;align-items:center;gap:2px;font-size:var(--title-large-size);font-weight:700;color:#fff;letter-spacing:-.2px}
+.tc-datenav{display:flex;align-items:center;justify-content:center;gap:4px;align-self:center;height:40px;padding:0 4px;border-radius:var(--radius-full);background:rgba(255,255,255,.16)}
+.tc-date-arrow{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full);color:#fff}
+.tc-date-arrow:active{background:rgba(255,255,255,.2)}
+.tc-date-arrow:disabled{color:rgba(255,255,255,.4);cursor:not-allowed}
+.tc-date-val{display:flex;align-items:center;gap:8px;min-width:150px;justify-content:center;font-size:var(--label-large-size);font-weight:500;color:#fff}
+.tc-date-tag{padding:2px 8px;border-radius:var(--radius-full);background:#fff;color:var(--color-primary);font-size:var(--label-small-size);font-weight:700}
+/* Contenido */
+.tc-content{flex:1;overflow-y:auto;overscroll-behavior:contain;background:var(--gray-50);border-radius:var(--radius-lg) var(--radius-lg) 0 0;margin-top:-16px;position:relative;z-index:1}
+.tc-content::-webkit-scrollbar{width:0}
+.tc-sortbar{position:sticky;top:0;z-index:2;background:var(--gray-50);padding:16px 16px 10px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;border-bottom:1px solid var(--border-light)}
+.tc-sorts{display:flex;align-items:center;gap:8px}
+.tc-sort-label{font-size:var(--label-small-size);color:var(--text-tertiary);margin-right:2px}
+.tc-sort{display:flex;align-items:center;gap:6px;height:38px;padding:0 14px;border-radius:var(--radius-full);border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text-secondary);font-size:var(--label-large-size);font-weight:500;transition:background 150ms cubic-bezier(0.4,0,0.2,1),color 150ms cubic-bezier(0.4,0,0.2,1)}
+.tc-sort:active{background:var(--gray-100)}
+.tc-sort.on{background:var(--color-primary-light);border-color:var(--cinnabar-200);color:var(--color-primary)}
+.tc-count{margin-top:10px;font-size:var(--label-small-size);color:var(--text-tertiary)}
+.tc-count b{color:var(--text-primary);font-weight:700}
+.tc-svc-list{display:flex;flex-direction:column;gap:10px;padding:12px 16px 4px}
+/* Tarjeta de servicio */
+.tc-svc-card>div{border:1px solid var(--border);transition:border-color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}
+.tc-svc-card.sel>div{border:2px solid var(--color-primary);background:var(--color-primary-light)!important}
+.tc-svc-card.off>div{box-shadow:none!important;background:var(--gray-50)!important;border-style:dashed}
+.tc-svc{width:100%;display:block;text-align:left;padding:14px 16px 16px;border-radius:var(--radius-sm)}
+.tc-svc:not(:disabled):active{background:var(--gray-50)}
+.tc-svc-card.sel .tc-svc{padding:13px 15px 15px}
+.tc-svc:disabled{cursor:not-allowed}
+.tc-times{display:flex;align-items:flex-start;gap:10px}
+.tc-col{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tc-col.end{align-items:flex-end;text-align:right}
+.tc-hour{display:flex;align-items:baseline;gap:6px;font-size:26px;font-weight:700;line-height:1.1;color:var(--text-primary);font-variant-numeric:tabular-nums}
+.tc-hour.arr{font-size:22px;font-weight:500;color:var(--gray-800)}
+.tc-svc-card.off .tc-hour{color:var(--gray-600)}
+.tc-svc-card.off .tc-hour.arr{color:var(--gray-600)}
+.tc-nextday{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:var(--radius-full);background:var(--color-secondary-container);color:var(--yellow-900);font-size:var(--label-small-size);font-weight:700;line-height:1.3}
+.tc-term{font-size:var(--label-small-size);color:var(--text-tertiary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+.tc-line{flex:1;display:flex;align-items:center;gap:4px;margin-top:12px;min-width:24px}
+.tc-line>span:first-child{flex:1;height:0;border-top:1px dashed var(--border-strong)}
+.tc-svc-div{height:1px;background:var(--border-light);margin:12px 0 10px}
+.tc-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.tc-meta{font-size:var(--label-small-size);color:var(--text-secondary);line-height:1.4}
+.tc-price{display:flex;align-items:baseline;gap:5px;font-size:var(--title-large-size);font-weight:700;color:var(--color-primary);white-space:nowrap}
+.tc-price.off{color:var(--gray-500);font-weight:500}
+.tc-desde{font-size:var(--label-small-size);font-weight:400;color:var(--text-tertiary)}
+.tc-flags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tc-flag{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:var(--radius-full);font-size:var(--label-small-size);font-weight:500}
+.tc-flag-warn{background:var(--color-secondary-container);color:var(--yellow-900)}
+.tc-flag-off{background:var(--gray-200);color:var(--gray-700)}
+.tc-flag-sel{background:var(--color-primary);color:#fff}
+.tc-flag-load{background:var(--gray-100);color:var(--text-secondary)}
+.tc-mini-spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--gray-300);border-top-color:var(--color-primary);animation:tcspin 700ms linear infinite;display:inline-block}
+@keyframes tcspin{to{transform:rotate(360deg)}}
+.tc-tail{padding:14px 16px 28px;font-size:var(--label-small-size);color:var(--text-muted);text-align:center}
+/* Skeleton */
+.sk-bar{display:block;border-radius:var(--radius-xs);background:linear-gradient(90deg,var(--gray-100),var(--gray-200),var(--gray-100));background-size:200% 100%;animation:skshine 1.2s linear infinite}
+@keyframes skshine{to{background-position:-200% 0}}
+.w72{width:72px}.w88{width:88px}.w140{width:140px}.h11{height:11px}.h12{height:12px}.h20{height:20px}.h26{height:26px}
+/* Notas */
+.notes{width:100%;max-width:840px}
+.notes h3{font-size:var(--title-small-size);font-weight:700;margin-bottom:12px}
+.notes ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 32px}
+.notes li{list-style:none;font-size:var(--body-small-size);line-height:1.5;color:var(--text-secondary);padding:10px 0;border-top:1px solid var(--border)}
+.notes b{color:var(--text-primary);font-weight:500}
+@media (max-width:520px){.notes{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="device"><div id="phone-root"></div></div>
+<aside class="notes">
+<h3>Decisiones sobre el wireframe</h3>
+<ul>
+<li><b>Sin empresa ni rating en la tarjeta.</b> Todos los servicios son de Transportes Chiclayo: ese espacio ahora lo ocupan terminal, tipo de servicio y disponibilidad.</li>
+<li><b>Horarios y Precio son criterios de orden, no filtros.</b> Un solo criterio activo a la vez; volver a tocarlo invierte la dirección y la flecha lo comunica.</li>
+<li><b>Hora de salida en 26 px bold</b> frente a 22 px medium en la llegada: la decisión empieza por “a qué hora salgo”.</li>
+<li><b>Llegada al día siguiente</b> con pastilla ámbar “+1 día” junto a la hora, no con fechas completas que obligan a leer.</li>
+<li><b>Agotado se mantiene en su lugar cronológico</b>, con borde punteado y hora en gris 600 (legible), sin poder seleccionarse.</li>
+<li><b>Toda la tarjeta es el área táctil</b>: al tocarla pasa a “cargando asientos” y luego a estado elegido. Sin botón “Seleccionar” por resultado.</li>
+<li><b>Navegación entre fechas en el app bar rojo</b>, con la ruta por encima de la fecha y sin permitir retroceder antes de hoy.</li>
+<li><b>Encabezado de resultados</b> con conteo de salidas, cuántas tienen asientos y precio mínimo, para orientar antes de scrollear.</li>
+</ul>
+</aside>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/app-transportes-chiclayo-design-system-48bc0c4b-b4a2-4bf0-8fc5-7719acd0cecd/_ds_bundle.js"></script>
+<script type="text/babel" src="tc-resultados.jsx"></script>
+</body>
+</html>
