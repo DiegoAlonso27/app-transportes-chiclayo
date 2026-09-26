@@ -18,6 +18,7 @@ button{font-family:var(--font-family);background:none;border:none;cursor:pointer
 a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--cinnabar-700)}
 #app{display:flex;flex-direction:column;align-items:center;gap:20px}
 .device{width:390px;height:844px;border:8px solid #0a0b0b;border-radius:44px;overflow:hidden;box-shadow:var(--shadow-5);flex-shrink:0;background:var(--color-background)}
+@media (max-width:480px) and (pointer:coarse){body{padding:0;background:var(--color-background)}.device{width:100vw;height:100dvh;border:0;border-radius:0;box-shadow:none;zoom:1!important}}
 .phone{height:100%;position:relative}
 .tc-screen{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background)}
 .tc-icon-btn{width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-full)}
